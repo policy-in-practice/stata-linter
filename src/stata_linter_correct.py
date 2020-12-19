@@ -380,22 +380,15 @@ def remove_duplicated_blank_lines(input_file, output_file, indent, tab_space):
         blank_line_flag = 0
         comment_delimiter = 0
         for line_index, line in enumerate(input_lines):
-            # update comment_delimiter
-            comment_delimiter = update_comment_delimiter(comment_delimiter, line)
-            if re.search(r"^(\*|\/\/)", line.lstrip()) != None:
-                output_list.append(line)
-            elif comment_delimiter > 0:
-                output_list.append(line)
-            elif comment_delimiter == 0:
-                if len(line.strip()) == 0:
-                    if blank_line_flag == 1:
-                        pass
-                    elif blank_line_flag == 0:
-                        output_list.append(line)
-                    blank_line_flag = 1
-                elif len(line.strip()) > 0:
-                    blank_line_flag = 0
+            if len(line.strip()) == 0:
+                if blank_line_flag == 1:
+                    pass
+                elif blank_line_flag == 0:
                     output_list.append(line)
+                blank_line_flag = 1
+            elif len(line.strip()) > 0:
+                blank_line_flag = 0
+                output_list.append(line)
     with open(output_file, "w") as writer:
         for i, output_line in enumerate(output_list):
             if i < len(output_list) - 1:
