@@ -51,7 +51,7 @@ program stata_linter_detect
     * call the python function
     qui: findfile stata_linter_detect.py
     local ado_path = r(fn)
-    python: import sys, os
+    python: import sys, os, re
     python: sys.path.append(os.path.dirname("`ado_path'"))
     python: from stata_linter_detect import stata_linter_detect_py
 

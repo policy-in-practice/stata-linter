@@ -29,7 +29,9 @@ def delimit_to_three_forward_slashes(input_file, output_file, indent, tab_space)
         for line_index, line in enumerate(input_lines):
             # update comment_delimiter
             comment_delimiter = update_comment_delimiter(comment_delimiter, line)
-            if comment_delimiter > 0:
+            if re.search(r"^(\*|\/\/)", line.lstrip()) != None:
+                output_list.append(line)
+            elif comment_delimiter > 0:
                 output_list.append(line)
             elif comment_delimiter == 0:
                 # check if "#delimit (something other than cr)" is included in a line
@@ -104,7 +106,9 @@ def tab_to_space(input_file, output_file, indent, tab_space):
         for line_index, line in enumerate(input_lines):
             # update comment_delimiter
             comment_delimiter = update_comment_delimiter(comment_delimiter, line)
-            if comment_delimiter > 0:
+            if re.search(r"^(\*|\/\/)", line.lstrip()) != None:
+                output_list.append(line)
+            elif comment_delimiter > 0:
                 output_list.append(line)
             elif comment_delimiter == 0:
                 # replace the hard tabs detected in a line to soft tabs (whitespaces)
@@ -188,7 +192,9 @@ def too_long_line(input_file, output_file, indent, tab_space):
         for line_index, line in enumerate(input_lines):
             # update comment_delimiter
             comment_delimiter = update_comment_delimiter(comment_delimiter, line)
-            if comment_delimiter > 0:
+            if re.search(r"^(\*|\/\/)", line.lstrip()) != None:
+                output_list.append(line)
+            elif comment_delimiter > 0:
                 output_list.append(line)
             elif comment_delimiter == 0:
                 # do nothing if any of the following conditions are met
@@ -328,7 +334,9 @@ def space_before_curly(input_file, output_file, indent, tab_space):
         for line_index, line in enumerate(input_lines):
             # update comment_delimiter
             comment_delimiter = update_comment_delimiter(comment_delimiter, line)
-            if comment_delimiter > 0:
+            if re.search(r"^(\*|\/\/)", line.lstrip()) != None:
+                output_list.append(line)
+            elif comment_delimiter > 0:
                 output_list.append(line)
             elif comment_delimiter == 0:
                 # replace "{" with " {" if there is no whitespace 
@@ -348,7 +356,9 @@ def remove_blank_lines_before_curly_close(input_file, output_file, indent, tab_s
         for line_index, line in enumerate(input_lines):
             # update comment_delimiter
             comment_delimiter = update_comment_delimiter(comment_delimiter, line)
-            if comment_delimiter > 0:
+            if re.search(r"^(\*|\/\/)", line.lstrip()) != None:
+                output_list.append(line)
+            elif comment_delimiter > 0:
                 output_list.append(line)
             elif comment_delimiter == 0:
                 if len(line.strip()) == 0:
@@ -379,7 +389,9 @@ def remove_duplicated_blank_lines(input_file, output_file, indent, tab_space):
         for line_index, line in enumerate(input_lines):
             # update comment_delimiter
             comment_delimiter = update_comment_delimiter(comment_delimiter, line)
-            if comment_delimiter > 0:
+            if re.search(r"^(\*|\/\/)", line.lstrip()) != None:
+                output_list.append(line)
+            elif comment_delimiter > 0:
                 output_list.append(line)
             elif comment_delimiter == 0:
                 if len(line.strip()) == 0:
