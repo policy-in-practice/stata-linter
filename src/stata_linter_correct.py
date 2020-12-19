@@ -104,15 +104,8 @@ def tab_to_space(input_file, output_file, indent, tab_space):
         input_lines = reader.readlines()
         comment_delimiter = 0
         for line_index, line in enumerate(input_lines):
-            # update comment_delimiter
-            comment_delimiter = update_comment_delimiter(comment_delimiter, line)
-            if re.search(r"^(\*|\/\/)", line.lstrip()) != None:
-                output_list.append(line)
-            elif comment_delimiter > 0:
-                output_list.append(line)
-            elif comment_delimiter == 0:
-                # replace the hard tabs detected in a line to soft tabs (whitespaces)
-                output_list.append(line.replace("\t", " " * int(tab_space)))
+            # replace the hard tabs detected in a line to soft tabs (whitespaces)
+            output_list.append(line.replace("\t", " " * int(tab_space)))
     with open(output_file, "w") as writer:
         for output_line in output_list:
             writer.write(output_line)
