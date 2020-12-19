@@ -67,7 +67,7 @@ program stata_linter_detect
     }
     * The case where one .do file is checked
     else if !missing("`file'") {
-        python: stata_linter_detect_py("`file'", "`indent'", "`nocheck_flag'", "`suppress_flag'", "`summary_flag'", "`excel'", "`linemax'", "`tab_space'")
+        python: stata_linter_detect_py(re.sub(r"\\", r"/", r"`file'"), "`indent'", "`nocheck_flag'", "`suppress_flag'", "`summary_flag'", "`excel'", "`linemax'", "`tab_space'")
     }
     * The case where all .do files in a folder are checked
     else if !missing("`folder'") {
@@ -78,7 +78,7 @@ program stata_linter_detect
             di "`l' **************************************"
             di ""
 
-            python: stata_linter_detect_py("`folder'/`l'", "`indent'", "`nocheck_flag'", "`suppress_flag'", "`summary_flag'", "`excel'", "`linemax'", "`tab_space'")
+            python: stata_linter_detect_py(re.sub(r"\\", r"/", r"`folder'/`l'"), "`indent'", "`nocheck_flag'", "`suppress_flag'", "`summary_flag'", "`excel'", "`linemax'", "`tab_space'")
         }
         restore
     }

@@ -86,7 +86,7 @@ program def stata_linter_correct
         *If "manual" were used and input was Y or if manual was not used, create the file
         else if ("`createfile'" == "Y") {
             * call the python function
-            python: `fun'("`output'", "`output'", "`indent'", "`tab_space'")
+            python: `fun'(re.sub(r"\\", r"/", r"`output'"), "`output'", "`indent'", "`tab_space'")
 
         }
     }
