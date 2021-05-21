@@ -5,6 +5,10 @@ import re
 import sys
 import pandas as pd
 
+# Colors ==================
+CRED = '\033[91m'
+CEND = '\033[0m'
+
 # Style ===================
 
 # Avoid to use abstract index names ----------------
@@ -33,7 +37,7 @@ def abstract_index_name(
             if suppress != "1":
                 print(
                     '''(line {:d}) style: '''.format(line_index + 1) +
-                    print_output
+                    CRED + print_output CEND
                     )
 
             style_dictionary["abstract_index_name"] += 1
@@ -82,7 +86,7 @@ def proper_indent(
                 if suppress != "1":
                     print(
                         '''(line {:d}) style: '''.format(line_index + 1) +
-                        print_output
+                        CRED + print_output CEND
                         )
 
                 style_dictionary["proper_indent"] += 1
@@ -115,7 +119,7 @@ def indent_after_newline(
             if suppress != "1":
                 print(
                     '''(line {:d}) style: '''.format(line_index + 1) +
-                    print_output
+                    CRED + print_output CEND
                     )
 
             style_dictionary["indent_after_newline"] += 1
@@ -138,7 +142,7 @@ def whitespace_symbol(
         if suppress != "1":
             print(
                 '''(line {:d}) style: '''.format(line_index + 1) +
-                print_output
+                CRED + print_output CEND
                 )
 
         style_dictionary["whitespace_symbol"] += 1
@@ -160,7 +164,7 @@ def condition_missing(
         if suppress != "1":
             print(
                 '''(line {:d}) style: '''.format(line_index + 1) +
-                print_output
+                CRED + print_output CEND
                 )
 
         style_dictionary["condition_missing"] += 1
@@ -182,7 +186,7 @@ def dont_use_delimit(
         if suppress != "1":
             print(
                 '''(line {:d}) style: '''.format(line_index + 1) +
-                print_output
+                CRED + print_output CEND
                 )
 
         style_dictionary["dont_use_delimit"] += 1
@@ -204,7 +208,7 @@ def dont_use_cd(
         if suppress != "1":
             print(
                 '''(line {:d}) style: '''.format(line_index + 1) +
-                print_output
+                CRED + print_output CEND
                 )
 
         style_dictionary["dont_use_cd"] += 1
@@ -227,7 +231,7 @@ def too_long_line(
         if suppress != "1":
             print(
                 '''(line {:d}) style: '''.format(line_index + 1) +
-                print_output
+                CRED + print_output CEND
                 )
 
         style_dictionary["too_long_line"] += 1
@@ -255,7 +259,7 @@ def explicit_if(
             if suppress != "1":
                 print(
                     '''(line {:d}) style: '''.format(line_index + 1) +
-                    print_output
+                    CRED + print_output CEND
                     )
             style_dictionary["explicit_if"] += 1
             excel_output_list.append([line_index + 1, "style", print_output])
@@ -277,7 +281,7 @@ def parentheses_for_global_macro(
         if suppress != "1":
             print(
                 '''(line {:d}) style: '''.format(line_index + 1) +
-                print_output
+                CRED + print_output CEND
                 )
 
         style_dictionary["parentheses_for_global_macro"] += 1
@@ -301,7 +305,7 @@ def check_missing(
         if suppress != "1":
             print(
                 '''(line {:d}) check: '''.format(line_index + 1) +
-                print_output
+                CRED + print_output CEND
                 )
 
         check_dictionary["check_missing"] += 1
@@ -324,7 +328,7 @@ def backslash_in_path(
         if suppress != "1":
             print(
                 '''(line {:d}) check: '''.format(line_index + 1) +
-                print_output
+                CRED + print_output CEND
                 )
 
         check_dictionary["backslash_in_path"] += 1
@@ -348,7 +352,7 @@ def bang_not_tilde(
         if suppress != "1":
             print(
                 '''(line {:d}) style: '''.format(line_index + 1) +
-                print_output
+                CRED + print_output CEND
                 )
 
         check_dictionary["bang_not_tilde"] += 1
@@ -401,7 +405,7 @@ def stata_linter_detect_py(
                     if suppress != "1":
                         print(
                             '''(line {:d}) style: '''.format(line_index + 1) +
-                            print_output
+                            CRED + print_output CEND
                             )
                     break
 
