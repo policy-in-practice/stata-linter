@@ -11,6 +11,7 @@ program stata_linter_detect
     cap python search
     if _rc {
         noi di as error `"{phang} For this command, Python installation is required. Refer to {browse "https://blog.stata.com/2020/08/18/stata-python-integration-part-1-setting-up-stata-to-use-python/":this page} for how to integrate Python to Stata. {p_end}"'
+        noi di as error `"{phang} You will also need to install the following modules: pandas and openpyxl. {p_pend}"'
         exit
     }
 
@@ -21,6 +22,12 @@ program stata_linter_detect
         exit
     }
 
+    cap python which openpyxl
+    if _rc {
+        noi di as error `"{phang} For this command to run, a package "openpyxl" needs to be installed. Refer to {browse "https://blog.stata.com/2020/09/01/stata-python-integration-part-3-how-to-install-python-packages/":this page} for how to install python packages. {p_end}"'
+        exit
+    }
+    
     * set indent size = 4 if missing
     if missing("`indent'") local indent "4"
 
